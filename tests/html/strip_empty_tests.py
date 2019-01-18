@@ -45,7 +45,7 @@ def empty_children_are_removed():
             html.element("li", {}, [html.text("")]),
             html.element("li", {}, [html.text("H")]),
         ])]),
-        
+
         [html.element("ul", {}, [
             html.element("li", {}, [html.text("H")])
         ])])
@@ -63,3 +63,17 @@ def force_writes_are_never_empty():
     assert_equal(
         [html.force_write],
         html.strip_empty([html.force_write]))
+
+
+@istest
+def table_nodes_are_reserved():
+    elements = [html.element('table', {}, [
+        html.element('tr', {'rowspan': 2}, [
+            html.element('td', {}, [html.text('H')]),
+        ]),
+        html.element('tr', []),
+    ])]
+    assert_equal(
+        elements,
+        html.strip_empty(elements)
+    )
