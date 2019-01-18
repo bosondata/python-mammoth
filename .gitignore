@@ -5,3 +5,6 @@
 /.tox
 /MANIFEST
 /build
+.python-version
+.idea/
+dist/*
